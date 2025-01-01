@@ -1,0 +1,45 @@
+:root {
+  --primary-color: #b8860b;
+  --secondary-color: #f4f4f4;
+  --text-color: #333;
+  --accent-color: #d4af37;
+}
+
+body {
+  margin: 0;
+  font-family: "Playfair Display", serif;
+  color: var(--text-color);
+  line-height: 1.6;
+}
+
+.navbar {
+  position: fixed;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.95);
+  padding: 1rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.menu-section {
+  padding: 4rem 2rem;
+  background: var(--secondary-color);
+}
+
+.menu-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  padding: 2rem;
+}
+
+.menu-item {
+  background: white;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: transform 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.menu-item:hover {
+  transform: translateY(-5px);
+}
