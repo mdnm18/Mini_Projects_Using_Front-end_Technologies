@@ -1,0 +1,223 @@
+/* * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  padding: 2rem;
+  margin:0;
+}
+
+#circle {
+  position: relative;
+  height: 300px;
+  width: 300px;
+  border-radius: 50%;
+  background-color: rgb(196, 117, 0);
+  transition: all 1s linear 0.2s;
+}
+
+#circle:hover{
+    transform:scale(2);
+    box-shadow: 15px 15px 30px red;
+}
+.eyes-left,
+.eyes-right {
+  position: absolute;
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  background-color: black;
+  top: 30%;
+}
+
+.eyes-left {
+  left: 30%;
+}
+
+.eyes-right {
+  right: 30%;
+}
+
+.mouth {
+  position: absolute;
+  border-radius: 0 0 70px 70px;
+  height: 70px;
+  width: 140px;
+  background-color: rgb(165, 50, 42);
+  left: 50%;
+  bottom: 25%;
+  transform: translateX(-50%);
+} */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #1a1a1a, #4a4a4a);
+  font-family: system-ui, -apple-system, sans-serif;
+}
+.container {
+  position: relative;
+  perspective: 1000px;
+}
+#circle {
+  position: relative;
+  height: 300px;
+  width: 300px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, #ffa600, #c47500);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2),
+    inset 0 -8px 20px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  animation: bounce 2s infinite;
+}
+@keyframes bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+#circle:hover {
+  transform: scale(1.2) rotate(5deg);
+  box-shadow: 0 20px 40px rgba(255, 0, 0, 0.3),
+    inset 0 -8px 20px rgba(0, 0, 0, 0.3);
+}
+.eyes-left,
+.eyes-right {
+  position: absolute;
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, #404040, #000);
+  top: 30%;
+  transition: all 0.3s ease;
+  animation: blink 4s infinite;
+}
+@keyframes blink {
+  0%,
+  96%,
+  98% {
+    transform: scaleY(1);
+  }
+  97% {
+    transform: scaleY(0.1);
+  }
+}
+.eyes-left {
+  left: 30%;
+}
+.eyes-right {
+  right: 30%;
+}
+.eyes-left::after,
+.eyes-right::after {
+  content: "";
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  background: white;
+  border-radius: 50%;
+  top: 20%;
+  left: 20%;
+  animation: eyeLight 4s infinite;
+}
+@keyframes eyeLight {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.6;
+  }
+}
+.mouth {
+  position: absolute;
+  border-radius: 0 0 70px 70px;
+  height: 70px;
+  width: 140px;
+  background: linear-gradient(to bottom, #a5322a, #8b1914);
+  left: 50%;
+  bottom: 25%;
+  transform: translateX(-50%);
+  transition: all 0.3s ease;
+  overflow: hidden;
+}
+.mouth::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 20px;
+  background: rgba(255, 255, 255, 0.1);
+  top: 10px;
+  border-radius: 50%;
+}
+.tongue {
+  position: absolute;
+  width: 60px;
+  height: 30px;
+  background: #ff6b6b;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 30px 30px 0 0;
+  animation: tongueWag 1s infinite;
+  display: none;
+}
+@keyframes tongueWag {
+  0%,
+  100% {
+    transform: translateX(-50%) translateY(0);
+  }
+  50% {
+    transform: translateX(-50%) translateY(5px);
+  }
+}
+#circle:hover .tongue {
+  display: block;
+}
+#circle:hover .eyes-left {
+  transform: scale(1.2) translateY(-5px);
+}
+#circle:hover .eyes-right {
+  transform: scale(1.2) translateY(-5px);
+}
+#circle:active {
+  transform: scale(0.95);
+}
+/* Mouse trail effect */
+.sparkle {
+  position: absolute;
+  pointer-events: none;
+  width: 10px;
+  height: 10px;
+  background: gold;
+  border-radius: 50%;
+  animation: sparkle 0.8s linear forwards;
+}
+@keyframes sparkle {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(0);
+    opacity: 0;
+  }
+}
