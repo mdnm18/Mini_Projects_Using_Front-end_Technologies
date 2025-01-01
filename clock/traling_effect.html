@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mouse Trail Effect</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+        }
+
+        .trail {
+            position: absolute;
+            pointer-events: none;
+            width: 15px;
+            height: 15px;
+            background: rgba(0, 150, 255, 0.6);
+            border-radius: 50%;
+            animation: fadeOut 1s forwards;
+        }
+
+        @keyframes fadeOut {
+            0% {
+                transform: scale(1);
+                opacity: 1;
+            }
+
+            100% {
+                transform: scale(0);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <script>
+        function createTrail(e) {
+            const trail = document.createElement("div");
+            trail.className = "trail";
+            document.body.appendChild(trail);
+            trail.style.left = e.pageX - 7.5 + "px";
+            trail.style.top = e.pageY - 7.5 + "px";
+            trail.addEventListener("animationend", () => {
+                trail.remove();
+            });
+        }
+
+        document.addEventListener("mousemove", (e) => {
+            createTrail(e);
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mouse Line Trail</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+        }
+
+        .line {
+            position: absolute;
+            pointer-events: none;
+            width: 4px;
+            height: 4px;
+            background: #007bff;
+            border-radius: 50%;
+            animation: lineFade 1s linear forwards;
+        }
+
+        @keyframes lineFade {
+            0% {
+                transform: scale(1);
+                opacity: 1;
+            }
+
+            100% {
+                transform: scale(0);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <script>
+        let mouseX = 0, mouseY = 0;
+        document.addEventListener("mousemove", (e) => {
+            mouseX = e.pageX;
+            mouseY = e.pageY;
+        });
+
+        function createLine() {
+            const line = document.createElement("div");
+            line.className = "line";
+            document.body.appendChild(line);
+            line.style.left = mouseX - 2 + "px";
+            line.style.top = mouseY - 2 + "px";
+            line.addEventListener("animationend", () => {
+                line.remove();
+            });
+        }
+
+        setInterval(createLine, 50);
+    </script>
+</body>
+
+</html>
